@@ -19,7 +19,6 @@ const TopNavBar = () => {
               alt="Logo" 
               width="28" 
               height="28"
-              className="logo-icon"
             />
           </div>
           <span className="fw-bold text-dark fs-4 brand-text">Admin Panel</span>

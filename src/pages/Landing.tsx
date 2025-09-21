@@ -41,7 +41,7 @@ const Landing = () => {
                             </p>
 
                             <div className="hero-buttons d-flex flex-column flex-sm-row gap-3">
-                                <a href="#login" className="btn btn-hero-primary px-5 py-3 fw-semibold text-white">
+                                <a href="/login" className="btn btn-hero-primary px-5 py-3 fw-semibold text-white">
                                     Get Started
                                 </a>
                                 <a href="#features" className="btn btn-hero-secondary px-5 py-3 fw-semibold">

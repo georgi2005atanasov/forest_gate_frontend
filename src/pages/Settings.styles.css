@@ -686,23 +686,3 @@
 .settings-main::-webkit-scrollbar-thumb:hover {
     background: rgba(108, 117, 125, 0.5);
 }
-
-/* Print styles */
-@media print {
-
-    .back-button,
-    .refresh-button,
-    .form-actions {
-        display: none;
-    }
-
-    .settings-card {
-        break-inside: avoid;
-        box-shadow: none;
-        border: 1px solid #000;
-    }
-
-    .settings-main {
-        background: white;
-    }
-}

@@ -65,7 +65,7 @@ const Login = () => {
                                 <form onSubmit={handleSubmit} className="login-form">
 
                                     <div className="form-group">
-                                        <label htmlFor="email" className="form-label">
+                                        <label htmlFor="email" className="form-label d-flex justify-content-start">
                                             Email Address
                                         </label>
                                         <div className="input-wrapper">
@@ -75,19 +75,20 @@ const Login = () => {
                                             </svg>
                                             <input
                                                 type="email"
-                                                className="form-control"
+                                                className="form-control ps-5"
                                                 id="email"
                                                 name="email"
-                                                placeholder="admin@company.com"
                                                 value={formData.email}
                                                 onChange={handleInputChange}
                                                 required
                                             />
                                         </div>
+                                        <div className="mb-2"></div>
                                     </div>
 
+
                                     <div className="form-group">
-                                        <label htmlFor="password" className="form-label">
+                                        <label htmlFor="password" className="form-label d-flex justify-content-start">
                                             Password
                                         </label>
                                         <div className="input-wrapper">
@@ -97,10 +98,9 @@ const Login = () => {
                                             </svg>
                                             <input
                                                 type={showPassword ? "text" : "password"}
-                                                className="form-control"
+                                                className="form-control ps-5"
                                                 id="password"
                                                 name="password"
-                                                placeholder="Enter your password"
                                                 value={formData.password}
                                                 onChange={handleInputChange}
                                                 required
@@ -123,6 +123,7 @@ const Login = () => {
                                                 )}
                                             </button>
                                         </div>
+                                        <div className="mb-4"></div>
                                     </div>
 
                                     <button type="submit" className="login-button">
