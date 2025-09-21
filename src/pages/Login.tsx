@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.styles.css';
+import { getStableFingerprint } from '../utils/common';
 
+// By recognizing the fingerprint on the backend, i would be able to know who is the admin :)
+// No need for a separate users login
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({
