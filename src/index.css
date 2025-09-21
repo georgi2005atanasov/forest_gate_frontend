@@ -1,0 +1,91 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  color: #111827;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+#root {
+  max-width: none;
+  padding: 0;
+}
+
+.app-bg {
+  background: linear-gradient(180deg, #f9fafb, #ffffff);
+  color: #111827;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.navbar {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.navbar-brand span {
+  color: #111827;
+}
+
+.card-body img {
+  filter: grayscale(100%) brightness(0);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  transition: transform 150ms ease, box-shadow 150ms ease;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .08);
+}
+
+.torii-logo {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+}
+
+.feature-card {
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0.75rem 1.25rem rgba(0, 0, 0, 0.12);
+}
+
+.icon-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-circle img {
+  filter: grayscale(100%) brightness(0);
+}
+
+.custom-collapse {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.custom-collapse.show {
+  max-height: 200px;
+}

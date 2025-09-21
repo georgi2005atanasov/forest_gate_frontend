@@ -1,0 +1,143 @@
+.navbar {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease;
+}
+
+.logo-container {
+    transition: all 0.3s ease;
+}
+
+.logo-container:hover {
+    transform: rotate(360deg);
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+.brand-text {
+    background: linear-gradient(135deg, #495057, #212529);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-hover {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-hover:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    transform: translateY(-1px);
+}
+
+.login-btn {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    background-color: #212529 !important;
+    color: #f8f9fa !important;
+}
+
+.login-btn:hover {
+    background-color: #212529;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(33, 37, 41, 0.3);
+}
+
+.login-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.login-btn:hover::before {
+    left: 100%;
+}
+
+.hamburger {
+    width: 24px;
+    height: 18px;
+    position: relative;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: #212529;
+    border-radius: 2px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+
+.hamburger span:nth-child(1) {
+    top: 0px;
+}
+
+.hamburger span:nth-child(2) {
+    top: 8px;
+}
+
+.hamburger span:nth-child(3) {
+    top: 16px;
+}
+
+.hamburger.active span:nth-child(1) {
+    top: 8px;
+    transform: rotate(135deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+    left: -60px;
+}
+
+.hamburger.active span:nth-child(3) {
+    top: 8px;
+    transform: rotate(-135deg);
+}
+
+@media (max-width: 992px) {
+    .navbar-collapse {
+        background: white;
+        padding: 1rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin-top: 1rem;
+    }
+
+    .navbar-nav {
+        gap: 0.5rem !important;
+    }
+
+    .nav-link {
+        text-align: center;
+        margin: 0.25rem 0;
+    }
+
+    .login-btn {
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
+
+.nav-link.active {
+    background-color: rgba(33, 37, 41, 0.1) !important;
+    color: #212529 !important;
+    font-weight: 600;
+}
