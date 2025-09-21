@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import './Settings.styles.css';
 
 interface ErrorProps {
@@ -9,6 +10,12 @@ interface ErrorProps {
 }
 
 const Settings = () => {
+    // const token = Cookies.get("auth_token");
+
+    // if (!token) {
+    //     return <Navigate to="/login" replace />;
+    // }
+
     const navigate = useNavigate();
     const [loading, setLoading] = useState({
         version: false,
