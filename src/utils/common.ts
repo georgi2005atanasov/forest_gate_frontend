@@ -114,7 +114,7 @@ const getUADataStable = async () => {
         const base = {
             brands: nav.userAgentData.brands,
             mobile: nav.userAgentData.mobile,
-            platform: nav.userAgentData.platform,
+            platform: nav.platform,
         };
         const high = await nav.userAgentData.getHighEntropyValues?.([
             "architecture",

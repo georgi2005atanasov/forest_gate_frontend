@@ -1,33 +1,17 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './Login.styles.css';
+import { useLoginHandlers } from './Login.hooks';
 
-// By recognizing the fingerprint on the backend, i would be able to know who is the admin :)
+// By recognizing the fingerprint on the backend, i would be able to know who is the admin
 // No need for a separate users login
 const Login = () => {
-    const [showPassword, setShowPassword] = useState(false);
-    const [formData, setFormData] = useState({
-        email: '',
-        password: ''
-    });
-    const navigate = useNavigate();
-
-    const handleInputChange = (e: any) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-        console.log('Login attempt:', formData);
-    };
-
-    const goBack = () => {
-        navigate(-1);
-    };
+    const {
+        showPassword,
+        setShowPassword,
+        formData,
+        handleInputChange,
+        handleSubmit,
+        goBack,
+    } = useLoginHandlers();
 
     return (
         <main className="login-main flex-grow-1 d-flex align-items-center py-5">
