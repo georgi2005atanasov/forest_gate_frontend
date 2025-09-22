@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 import './Settings.styles.css';
+import { API_BASE_URL } from '../utils/appConstants';
+import { useTranslation } from 'react-i18next';
 
 interface ErrorProps {
     version: any;
@@ -15,6 +16,7 @@ const Settings = () => {
     // if (!token) {
     //     return <Navigate to="/login" replace />;
     // }
+    const { t } = useTranslation();
 
     const navigate = useNavigate();
     const [loading, setLoading] = useState({
@@ -60,14 +62,11 @@ const Settings = () => {
     });
     const [successMessage, setSuccessMessage] = useState('');
 
-    // API Base URL
-    const API_BASE = 'http://localhost:8080/api/v1';
-
     // Fetch Version Info
     const fetchVersion = async () => {
         setLoading(prev => ({ ...prev, version: true }));
         try {
-            const response = await fetch(`${API_BASE}/version`);
+            const response = await fetch(`${API_BASE_URL}/system/version`);
             if (!response.ok) throw new Error('Failed to fetch version');
             const versionData = await response.json();
             setData(prev => ({ ...prev, version: versionData }));
@@ -82,7 +81,7 @@ const Settings = () => {
     const fetchHealth = async () => {
         setLoading(prev => ({ ...prev, health: true }));
         try {
-            const response = await fetch(`${API_BASE}/health`);
+            const response = await fetch(`${API_BASE_URL}/system/health`);
             if (!response.ok) throw new Error('Failed to fetch health');
             const healthData = await response.json();
             setData(prev => ({ ...prev, health: healthData }));
@@ -97,7 +96,7 @@ const Settings = () => {
     const fetchConfig = async () => {
         setLoading(prev => ({ ...prev, config: true }));
         try {
-            const response = await fetch(`${API_BASE}/config`);
+            const response = await fetch(`${API_BASE_URL}/system/config`);
             if (!response.ok) throw new Error('Failed to fetch config');
             const configData = await response.json();
             setData(prev => ({ ...prev, config: configData }));
@@ -117,7 +116,7 @@ const Settings = () => {
         setSuccessMessage('');
 
         try {
-            const response = await fetch(`${API_BASE}/config`, {
+            const response = await fetch(`${API_BASE_URL}/system/config`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -191,8 +190,8 @@ const Settings = () => {
                             </svg>
                             Back
                         </button>
-                        <h1 className="settings-title">System Settings</h1>
-                        <p className="settings-subtitle">Manage your application configuration and monitor system health</p>
+                        <h1 className="settings-title">{t("settings.title")}</h1>
+                        <p className="settings-subtitle">{t("settings.subtitle")}</p>
                     </div>
                     <button onClick={refreshAll} className="refresh-button btn btn-secondary">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -201,7 +200,7 @@ const Settings = () => {
                             <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
                             <path d="M3 21v-5h5" />
                         </svg>
-                        Refresh All
+                        {t("settings.refreshAll")}
                     </button>
                 </div>
 
@@ -217,7 +216,7 @@ const Settings = () => {
                                         <path d="M12 6v6l4 2" />
                                     </svg>
                                 </div>
-                                <h3 className="card-title">Application Version</h3>
+                                <h3 className="card-title">{t("settings.version.title")}</h3>
                             </div>
                             <div className="card-body">
                                 {loading.version ? (
@@ -227,11 +226,11 @@ const Settings = () => {
                                 ) : data.version ? (
                                     <div className="version-info">
                                         <div className="info-item">
-                                            <span className="info-label">Name:</span>
+                                            <span className="info-label">{t("settings.version.name")}:</span>
                                             <span className="info-value">{data.version.name}</span>
                                         </div>
                                         <div className="info-item">
-                                            <span className="info-label">Version:</span>
+                                            <span className="info-label">{t("settings.version.version")}:</span>
                                             <span className="info-value version-badge">{data.version.version}</span>
                                         </div>
                                     </div>
@@ -249,7 +248,7 @@ const Settings = () => {
                                         <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
                                     </svg>
                                 </div>
-                                <h3 className="card-title">System Health</h3>
+                                <h3 className="card-title">{t("settings.health.title")}</h3>
                                 {data.health && (
                                     <span className={`status-badge ${data.health.status === 'healthy' ? 'healthy' : 'unhealthy'}`}>
                                         {data.health.status}
@@ -266,7 +265,7 @@ const Settings = () => {
                                         <div className="health-grid">
                                             <div className="health-metric">
                                                 <div className="metric-header">
-                                                    <span className="metric-label">System</span>
+                                                    <span className="metric-label">{t("settings.health.system")}</span>
                                                 </div>
                                                 <div className="metric-value">{data.health.host.system_name}</div>
                                                 <div className="metric-detail">{data.health.host.host_name}</div>
@@ -274,7 +273,7 @@ const Settings = () => {
 
                                             <div className="health-metric">
                                                 <div className="metric-header">
-                                                    <span className="metric-label">CPU Usage</span>
+                                                    <span className="metric-label">{t("settings.health.cpuUsage")}</span>
                                                 </div>
                                                 <div className="metric-value">{getAverageCPU(data.health.host.cpu_usage_per_core)}%</div>
                                                 <div className="metric-detail">{data.health.host.cpu_usage_per_core ? data.health.host.cpu_usage_per_core.length : ''} cores</div>
@@ -282,7 +281,7 @@ const Settings = () => {
 
                                             <div className="health-metric">
                                                 <div className="metric-header">
-                                                    <span className="metric-label">Last Check</span>
+                                                    <span className="metric-label">{t("settings.health.lastCheck")}</span>
                                                 </div>
                                                 <div className="metric-value">
                                                     {data.health.timestamp ? new Date(data.health.timestamp).toLocaleTimeString() : ''}
@@ -308,7 +307,7 @@ const Settings = () => {
                                         <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1m11-7a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM7 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
                                     </svg>
                                 </div>
-                                <h3 className="card-title">Configuration Management</h3>
+                                <h3 className="card-title">{t("settings.config.title")}</h3>
                             </div>
                             <div className="card-body">
                                 {loading.config ? (
@@ -335,7 +334,7 @@ const Settings = () => {
 
                                         <div className="form-grid">
                                             <div className="form-group">
-                                                <label htmlFor="ai_model" className="form-label">AI Model</label>
+                                                <label htmlFor="ai_model" className="form-label">{t("settings.config.aiModel")}</label>
                                                 <input
                                                     type="text"
                                                     className="form-control"
@@ -343,12 +342,12 @@ const Settings = () => {
                                                     name="ai_model"
                                                     value={configForm.ai_model}
                                                     onChange={handleInputChange}
-                                                    placeholder="Enter AI model name"
+                                                    placeholder={t("settings.config.aiModelPlaceholder")}
                                                 />
                                             </div>
 
                                             <div className="form-group">
-                                                <label htmlFor="token_validity_seconds" className="form-label">Token Validity (seconds)</label>
+                                                <label htmlFor="token_validity_seconds" className="form-label">{t("settings.config.tokenValidity")}</label>
                                                 <input
                                                     type="number"
                                                     className="form-control"
@@ -360,7 +359,7 @@ const Settings = () => {
                                             </div>
 
                                             <div className="form-group">
-                                                <label htmlFor="refresh_token_validity_seconds" className="form-label">Refresh Token Validity (seconds)</label>
+                                                <label htmlFor="refresh_token_validity_seconds" className="form-label">{t("settings.config.refreshTokenValidity")}</label>
                                                 <input
                                                     type="number"
                                                     className="form-control"
@@ -372,7 +371,7 @@ const Settings = () => {
                                             </div>
 
                                             <div className="form-group">
-                                                <label htmlFor="vector_similarity_threshold" className="form-label">Vector Similarity Threshold</label>
+                                                <label htmlFor="vector_similarity_threshold" className="form-label">{t("settings.config.vectorThreshold")}</label>
                                                 <input
                                                     type="number"
                                                     className="form-control"
@@ -404,7 +403,7 @@ const Settings = () => {
                                                     onChange={handleInputChange}
                                                 />
                                                 <label className="form-check-label" htmlFor="allow_recovery_codes">
-                                                    Allow Recovery Codes
+                                                    {t("settings.config.allowRecoveryCodes")}
                                                 </label>
                                             </div>
 
@@ -418,26 +417,18 @@ const Settings = () => {
                                                     onChange={handleInputChange}
                                                 />
                                                 <label className="form-check-label" htmlFor="allow_refresh_tokens">
-                                                    Allow Refresh Tokens
+                                                    {t("settings.config.allowRefreshTokens")}
                                                 </label>
                                             </div>
                                         </div>
 
                                         <div className="form-actions">
                                             <button
-                                                type="button"
-                                                onClick={fetchConfig}
-                                                className="btn btn-secondary"
-                                                disabled={loading.config}
-                                            >
-                                                Reset
-                                            </button>
-                                            <button
                                                 type="submit"
                                                 className="btn btn-primary"
                                                 disabled={loading.saving}
                                             >
-                                                {loading.saving ? 'Saving...' : 'Save Configuration'}
+                                                {loading.saving ? t("settings.config.saving") : t("settings.config.save")}
                                             </button>
                                         </div>
                                     </form>

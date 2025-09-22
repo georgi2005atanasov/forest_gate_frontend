@@ -1,0 +1,87 @@
+{
+    "landing": {
+        "title": {
+            "simple": "Simple.",
+            "modern": "Modern.",
+            "responsive": "Responsive."
+        },
+        "subtitle": "Experience the next generation of admin management with our sleek, intuitive dashboard designed for modern businesses.",
+        "buttons": {
+            "getStarted": "Get Started",
+            "explore": "Explore Features"
+        },
+        "features": {
+            "sectionTitle": "Powerful Features",
+            "sectionSubtitle": "Everything you need to manage your application effectively",
+            "manageUsers": {
+                "title": "Manage Users",
+                "text": "Create, edit, and deactivate users with advanced permissions."
+            },
+            "sessions": {
+                "title": "Sessions",
+                "text": "Monitor active sessions and detailed analytics in real-time."
+            },
+            "settings": {
+                "title": "Settings",
+                "text": "Control app preferences, security policies, and configurations."
+            },
+            "events": {
+                "title": "Events",
+                "text": "Review system events, audit logs, and activity history."
+            }
+        },
+        "footer": {
+            "privacy": "Privacy",
+            "terms": "Terms",
+            "contact": "Contact",
+            "copyright": "© {{year}} Forest Gate."
+        }
+    },
+    "topNav": {
+        "brand": "Admin Panel",
+        "dashboard": "Dashboard",
+        "users": "Users",
+        "settings": "Settings",
+        "login": "Login",
+        "register": "Register"
+    },
+    "settings": {
+        "back": "Back",
+        "title": "System Settings",
+        "subtitle": "Manage your application configuration and monitor system health",
+        "refreshAll": "Refresh All",
+        "version": {
+            "title": "Application Version",
+            "name": "Name",
+            "version": "Version"
+        },
+        "health": {
+            "title": "System Health",
+            "status": {
+                "healthy": "healthy",
+                "unhealthy": "unhealthy"
+            },
+            "system": "System",
+            "cpuUsage": "CPU Usage",
+            "lastCheck": "Last Check",
+            "cores": "cores"
+        },
+        "config": {
+            "title": "Configuration Management",
+            "aiModel": "AI Model",
+            "aiModelPlaceholder": "Enter AI model name",
+            "tokenValidity": "Token Validity (seconds)",
+            "refreshTokenValidity": "Refresh Token Validity (seconds)",
+            "vectorThreshold": "Vector Similarity Threshold",
+            "allowRecoveryCodes": "Allow Recovery Codes",
+            "allowRefreshTokens": "Allow Refresh Tokens",
+            "reset": "Reset",
+            "save": "Save Configuration",
+            "saving": "Saving...",
+            "success": "Configuration updated successfully!",
+            "error": "Failed to update configuration"
+        },
+        "loading": "Loading...",
+        "error": "Error"
+    }
+}

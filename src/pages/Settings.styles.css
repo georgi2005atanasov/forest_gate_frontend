@@ -319,7 +319,7 @@
     font-weight: 600;
     color: #374151;
     margin-bottom: 0.75rem;
-    font-size: 0.9rem;
+    font-size: 12px !important;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     display: block;

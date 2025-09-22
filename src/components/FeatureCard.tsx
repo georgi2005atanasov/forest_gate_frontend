@@ -13,9 +13,9 @@ const FeatureCard = ({ title, iconSrc, text }: FeatureCardProps) => {
                     <div className="icon-circle">
                         <img src={iconSrc} alt="" width="28" height="28" />
                     </div>
-                    <div>
+                    <div className="d-flex justify-content-start flex-column">
                         <h5 className="card-title mb-1 d-flex justify-content-start">{title}</h5>
-                        <p className="card-text text-body-secondary mb-0">{text}</p>
+                        <p className="card-text d-flex justify-content-start text-body-secondary mb-0">{text}</p>
                     </div>
                 </div>
             </div>
