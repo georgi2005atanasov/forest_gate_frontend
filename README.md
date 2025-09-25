@@ -81,8 +81,5 @@ Backend API: [Forest Gate (Rust)](https://github.com/georgi2005atanasov/forest_g
 **Q: Is this frontend ready for production?**  
 A: Not yet — it’s **under active development**. Features and layout will change.  
 
-**Q: Do I need the backend to use this?**  
-A: Yes, the **Rust Forest Gate API** provides all data, events, and security logic.  
-
 **Q: What makes it different from other admin dashboards?**  
 A: It focuses on **security**, combining **anomaly detection, LLM behavior summaries, and real-time alerts** into one UI.  
