@@ -21,6 +21,7 @@ const Settings = () => {
         refreshAll,
         goBack,
         getAverageCPU,
+        fieldErrors,
     } = useSettingsHandlers();
 
     return (
@@ -184,49 +185,83 @@ const Settings = () => {
                                                 <label htmlFor="ai_model" className="form-label">{t("settings.config.aiModel")}</label>
                                                 <input
                                                     type="text"
-                                                    className="form-control"
+                                                    className={`form-control ${fieldErrors.ai_model ? 'is-invalid' : ''}`}
                                                     id="ai_model"
                                                     name="ai_model"
                                                     value={configForm.ai_model}
                                                     onChange={handleInputChange}
                                                     placeholder={t("settings.config.aiModelPlaceholder")}
+                                                    aria-invalid={!!fieldErrors.ai_model}
+                                                    aria-describedby="ai_model_error"
                                                 />
+                                                {fieldErrors.ai_model && (
+                                                    <div id="ai_model_error" className="invalid-feedback">{fieldErrors.ai_model}</div>
+                                                )}
                                             </div>
 
                                             <div className="form-group">
                                                 <label htmlFor="token_validity_seconds" className="form-label">{t("settings.config.tokenValidity")}</label>
                                                 <input
                                                     type="number"
-                                                    className="form-control"
+                                                    min={60}
+                                                    step={1}
+                                                    className={`form-control ${fieldErrors.token_validity_seconds ? 'is-invalid' : ''}`}
                                                     id="token_validity_seconds"
                                                     name="token_validity_seconds"
                                                     value={configForm.token_validity_seconds}
                                                     onChange={handleInputChange}
+                                                    aria-invalid={!!fieldErrors.token_validity_seconds}
+                                                    aria-describedby="token_validity_seconds_error"
                                                 />
+                                                {fieldErrors.token_validity_seconds && (
+                                                    <div id="token_validity_seconds_error" className="invalid-feedback">
+                                                        {fieldErrors.token_validity_seconds}
+                                                    </div>
+                                                )}
                                             </div>
 
                                             <div className="form-group">
                                                 <label htmlFor="refresh_token_validity_seconds" className="form-label">{t("settings.config.refreshTokenValidity")}</label>
                                                 <input
                                                     type="number"
-                                                    className="form-control"
+                                                    min={60}
+                                                    step={1}
+                                                    className={`form-control ${fieldErrors.refresh_token_validity_seconds ? 'is-invalid' : ''}`}
                                                     id="refresh_token_validity_seconds"
                                                     name="refresh_token_validity_seconds"
                                                     value={configForm.refresh_token_validity_seconds}
                                                     onChange={handleInputChange}
+                                                    disabled={!configForm.allow_refresh_tokens}
+                                                    aria-invalid={!!fieldErrors.refresh_token_validity_seconds}
+                                                    aria-describedby="refresh_token_validity_seconds_error"
                                                 />
+                                                {fieldErrors.refresh_token_validity_seconds && (
+                                                    <div id="refresh_token_validity_seconds_error" className="invalid-feedback">
+                                                        {fieldErrors.refresh_token_validity_seconds}
+                                                    </div>
+                                                )}
                                             </div>
 
                                             <div className="form-group">
                                                 <label htmlFor="vector_similarity_threshold" className="form-label">{t("settings.config.vectorThreshold")}</label>
                                                 <input
                                                     type="number"
-                                                    className="form-control"
+                                                    min={0}
+                                                    max={100}
+                                                    step="any"
+                                                    className={`form-control ${fieldErrors.vector_similarity_threshold ? 'is-invalid' : ''}`}
                                                     id="vector_similarity_threshold"
                                                     name="vector_similarity_threshold"
                                                     value={configForm.vector_similarity_threshold}
                                                     onChange={handleInputChange}
+                                                    aria-invalid={!!fieldErrors.vector_similarity_threshold}
+                                                    aria-describedby="vector_similarity_threshold_error"
                                                 />
+                                                {fieldErrors.vector_similarity_threshold && (
+                                                    <div id="vector_similarity_threshold_error" className="invalid-feedback">
+                                                        {fieldErrors.vector_similarity_threshold}
+                                                    </div>
+                                                )}
                                             </div>
 
                                             <input
@@ -270,11 +305,7 @@ const Settings = () => {
                                         </div>
 
                                         <div className="form-actions">
-                                            <button
-                                                type="submit"
-                                                className="btn btn-primary"
-                                                disabled={loading.saving}
-                                            >
+                                            <button type="submit" className="btn btn-primary" disabled={loading.saving}>
                                                 {loading.saving ? t("settings.config.saving") : t("settings.config.save")}
                                             </button>
                                         </div>
